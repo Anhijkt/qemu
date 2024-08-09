@@ -66,6 +66,8 @@
 #include <linux/in6.h>
 #include <linux/errqueue.h>
 #include <linux/random.h>
+
+#define TW_IOCTL_FIRMWARE_PASS_THROUGH 0x108
 #ifdef CONFIG_TIMERFD
 #include <sys/timerfd.h>
 #endif
@@ -5610,6 +5612,14 @@ static abi_long do_ioctl(int fd, int cmd, abi_long arg)
         target_size = thunk_type_size(arg_type, 0);
         switch(ie->access) {
         case IOC_R:
+            if (cmd == 0x108) {
+                qemu_log("PASSTHROUGH Hook Trigger, 0x%x\n", ie->host_cmd);
+                argptr = lock_user(VERIFY_WRITE, arg, target_size, 0);
+                struct pass_through_info temp_info = {0,  0, 31337, 16, 16, 16};
+                thunk_convert(argptr, &temp_info, arg_type, THUNK_TARGET);
+                unlock_user(argptr, arg, target_size);
+                break;
+            }
             ret = get_errno(safe_ioctl(fd, ie->host_cmd, buf_temp));
             if (!is_error(ret)) {
                 argptr = lock_user(VERIFY_WRITE, arg, target_size, 0);

@@ -48,6 +48,16 @@
 
 #define TARGET_SEMOPM     500
 
+struct pass_through_info {
+    unsigned int control_code;
+    unsigned int status;
+    unsigned int unique_id;
+    unsigned int sequence_id;
+    unsigned int os_specific;
+    unsigned int buffer_length;
+};
+#define TARGET_TW_IOCTL_FIRMWARE_PASS_THROUGH 0x108
+
 /*
  * The following is for compatibility across the various Linux
  * platforms.  The i386 ioctl numbering scheme doesn't really enforce

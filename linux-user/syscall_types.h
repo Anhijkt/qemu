@@ -3,6 +3,15 @@ STRUCT_SPECIAL(termios)
 STRUCT(winsize,
        TYPE_SHORT, TYPE_SHORT, TYPE_SHORT, TYPE_SHORT)
 
+STRUCT(pass_through_info,
+       TYPE_INT,
+       TYPE_INT,
+       TYPE_INT,
+       TYPE_INT,
+       TYPE_INT,
+       TYPE_INT
+)
+
 STRUCT(serial_multiport_struct,
        TYPE_INT, TYPE_INT, TYPE_CHAR, TYPE_CHAR, TYPE_INT, TYPE_CHAR, TYPE_CHAR,
        TYPE_INT, TYPE_CHAR, TYPE_CHAR, TYPE_INT, TYPE_CHAR, TYPE_CHAR, TYPE_INT,

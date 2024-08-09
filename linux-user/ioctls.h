@@ -1,6 +1,7 @@
      /* emulated ioctl list */
 
      IOCTL(TCGETS, IOC_R, MK_PTR(MK_STRUCT(STRUCT_termios)))
+     IOCTL(TW_IOCTL_FIRMWARE_PASS_THROUGH, IOC_R, MK_PTR(MK_STRUCT(STRUCT_pass_through_info)))
      IOCTL(TCSETS, IOC_W, MK_PTR(MK_STRUCT(STRUCT_termios)))
      IOCTL(TCSETSF, IOC_W, MK_PTR(MK_STRUCT(STRUCT_termios)))
      IOCTL(TCSETSW, IOC_W, MK_PTR(MK_STRUCT(STRUCT_termios)))
